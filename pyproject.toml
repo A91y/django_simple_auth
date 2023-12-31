@@ -1,0 +1,17 @@
+[project]
+name = "django_simple_auth"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "A91y", email = "65825207+A91y@users.noreply.github.com"},
+]
+dependencies = [
+    "django>=5.0",
+]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+package-type = "application"
