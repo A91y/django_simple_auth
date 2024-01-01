@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top shadow-sm ">
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">DjSA</a>
     <button
@@ -15,23 +15,54 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 pe-5 gap-5">
         <li class="nav-item">
-          <a class="nav-link {% if name == 'index' %}active{% endif %}" aria-current="page" href="{% url 'index' %}">Home</a>
+          <a
+            class="nav-link {% if name == 'home' %}active{% endif %}"
+            aria-current="page"
+            href="{% url 'home' %}"
+            >Home</a
+          >
         </li>
         {% if not user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link {% if name == 'login' %}active{% endif %}" href="{% url 'login' %}">Login</a>
+          <a
+            class="nav-link {% if name == 'login' %}active{% endif %}"
+            href="{% url 'login' %}"
+            >Login</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if name == 'register' %}active{% endif %}" href="{% url 'register' %}">Register</a>
+          <a
+            class="nav-link {% if name == 'register' %}active{% endif %}"
+            href="{% url 'register' %}"
+            >Register</a
+          >
         </li>
         {% else %}
         <li class="nav-item mr-auto">
-            <button class="btn btn-danger">
-                <a class="text-decoration-none text-white" href="{% url 'logout' %}">Logout</a>
-            </button>
+          <button class="btn btn-danger">
+            <a class="text-decoration-none text-white" href="{% url 'logout' %}"
+              >Logout</a
+            >
+          </button>
         </li>
         {% endif %}
       </ul>
     </div>
   </div>
 </nav>
+{% if messages %}
+{% for message in messages %}
+<div
+  class="alert alert-{% if message.tags == 'error' %}danger{% elif message.tags == 'success' %}success{% else %}info{% endif %} alert-dismissible fade show w-full mt-2 mx-2"
+  role="alert"
+>
+  {{ message }}
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+{% endfor %}
+{% endif %}
