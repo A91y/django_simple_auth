@@ -71,11 +71,14 @@ def register_view(request: HttpRequest):
     return render(request, "register.html", context={"name": "register"})
 
 
-@login_required
 def logout_view(request: HttpRequest):
-    logout(request)
-    messages.success(request, "Logged out...")
+    if request.user.is_authenticated:
+        logout(request)
+        messages.success(request, "Logged out...")
+    else:
+        messages.info(request, "You are not logged in...")
     return redirect("home")
+
 
 @login_required
 def dashboard(request: HttpRequest):
