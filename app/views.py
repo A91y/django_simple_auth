@@ -33,7 +33,7 @@ def login_view(request: HttpRequest):
         if user is not None:
             login(request, user)
             messages.success(request, f"Successfully! Logged in.")
-            return redirect("home")
+            return redirect("dashboard")
         messages.error(request, "Incorrect Email or Password...")
         return redirect("login")
 
@@ -67,7 +67,7 @@ def register_view(request: HttpRequest):
         user = authenticate(request, username=email, password=password)
         login(request, user)
         messages.success(request, "User registered successfully...")
-        return redirect("home")
+        return redirect("dashboard")
     return render(request, "register.html", context={"name": "register"})
 
 
@@ -76,3 +76,7 @@ def logout_view(request: HttpRequest):
     logout(request)
     messages.success(request, "Logged out...")
     return redirect("home")
+
+@login_required
+def dashboard(request: HttpRequest):
+    return render(request, "dashboard.html", context={"name": "dashboard"})
