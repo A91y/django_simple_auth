@@ -12,6 +12,8 @@ requires-python = "==3.11.*"
 readme = "README.md"
 license = {text = "MIT"}
 
+[tool.pdm.scripts]
+start = "python manage.py runserver"
 
 [tool.pdm]
 package-type = "application"

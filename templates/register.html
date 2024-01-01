@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block title %}Register{% endblock %} {% block body %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div
+    class="shadow p-5 mb-5 bg-body-tertiary rounded"
+    style="max-width: 500px"
+  >
+    <h2 class="text-center">Register</h2>
+    <form method="post" action="/register">
+      {% csrf_token %}
+      <div class="row mt-4">
+        <div class="mb-3 col">
+          <label for="fname" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="fname" name="fname" required/>
+        </div>
+        <div class="mb-3 col">
+          <label for="lname" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="lname" name="lname"/>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          aria-describedby="emailHelp"
+          name="email"
+          required
+        />
+        <div id="emailHelp" class="form-text">
+          We'll never share your email with anyone else.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
